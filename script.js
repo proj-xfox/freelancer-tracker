@@ -1,8 +1,27 @@
-// script.js - Updated with Payment History Logic
+// script.js - Updated with a fix for data compatibility
 
 let projects = JSON.parse(localStorage.getItem('projects')) || [];
 let pieChart, barChart;
-let editingIndex = -1; // No longer used for payments, only for adding/editing projects
+let editingIndex = -1; // Used to track the project being edited or receiving a payment
+
+// Helper function to handle data compatibility from old app version
+function normalizeProjects(projects) {
+    return projects.map(p => {
+        // If the project doesn't have a payments array but has a paidAmount, it's an old entry
+        if (!p.payments && typeof p.paidAmount !== 'undefined') {
+            const paidAmount = p.paidAmount;
+            delete p.paidAmount; // Remove the old property
+            p.payments = paidAmount > 0 ? [{
+                date: new Date().toISOString().split('T')[0],
+                amount: paidAmount
+            }] : [];
+        }
+        return p;
+    });
+}
+
+// Normalize projects loaded from localStorage
+projects = normalizeProjects(projects);
 
 // UI elements
 const themeToggleBtn = document.getElementById('themeToggle');
@@ -100,6 +119,7 @@ projectForm.addEventListener('submit', e => {
             ...newProject,
             payments: projects[editingIndex].payments
         };
+        document.getElementById('projectForm button').textContent = "Save Project";
         editingIndex = -1;
     } else {
         projects.push(newProject);
@@ -177,7 +197,9 @@ function exportCSV() {
         if (remaining > 0 && p.dueDate < today) status = 'Overdue';
         csv += `"${p.client}","${p.project}","${p.amount}","${totalPaid}","${remaining}","${p.dueDate}","${status}"\n`;
     });
-    const blob = new Blob([csv], { type: 'text/csv' });
+    const blob = new Blob([csv], {
+        type: 'text/csv'
+    });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
