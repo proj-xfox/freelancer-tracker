@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancer Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Freelancer Project Tracker</h1>
+            <button id="themeToggle">Toggle Theme</button>
+        </header>
+
+        <section id="dashboard" class="card-grid">
+            <div class="card">
+                <h2>Total Due</h2>
+                <p id="totalDue" class="amount">$0.00</p>
+            </div>
+            <div class="card">
+                <h2>Total Paid</h2>
+                <p id="totalPaid" class="amount">$0.00</p>
+            </div>
+            <div class="card">
+                <h2>Total Overdue</h2>
+                <p id="totalOverdue" class="amount">$0.00</p>
+            </div>
+        </section>
+
+        <section id="charts" class="chart-grid">
+            <div class="chart-container">
+                <h3>Project Status</h3>
+                <canvas id="projectsPieChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Amounts Summary</h3>
+                <canvas id="amountsBarChart"></canvas>
+            </div>
+        </section>
+        
+        <section id="project-form-section" class="card">
+            <h2>Add/Edit Project</h2>
+            <form id="projectForm">
+                <input type="text" id="client" placeholder="Client Name" required>
+                <input type="text" id="project" placeholder="Project Name" required>
+                <input type="number" id="amount" placeholder="Total Amount" step="0.01" required>
+                <input type="number" id="paidAmount" placeholder="Paid Amount" step="0.01" required>
+                <input type="date" id="dueDate" required>
+                <button type="submit">Save Project</button>
+            </form>
+        </section>
+
+        <section id="project-list-section" class="card">
+            <div class="table-header">
+                <h2>Project List</h2>
+                <div class="actions">
+                    <select id="filterStatus">
+                        <option value="all">All Statuses</option>
+                        <option value="fullyPaid">Fully Paid</option>
+                        <option value="partial">Partial</option>
+                        <option value="unpaid">Unpaid</option>
+                        <option value="overdue">Overdue</option>
+                    </select>
+                    <button onclick="exportCSV()">Export CSV</button>
+                    <button onclick="exportPDF()">Export PDF</button>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Client</th>
+                        <th>Project</th>
+                        <th>Amount</th>
+                        <th>Paid</th>
+                        <th>Remaining</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="projectTable"></tbody>
+            </table>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

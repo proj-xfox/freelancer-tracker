@@ -1,0 +1,196 @@
+:root {
+  --bg-color: #f3f4f6;
+  --text-color: #1f2937;
+  --card-bg: #ffffff;
+  --button-bg: #4f46e5;
+  --button-hover-bg: #4338ca;
+  --button-text: #ffffff;
+  --danger-bg: #ef4444;
+  --danger-hover-bg: #dc2626;
+  --border-color: #e5e7eb;
+}
+
+[data-theme="dark"] {
+  --bg-color: #1f2937;
+  --text-color: #f3f4f6;
+  --card-bg: #374151;
+  --button-bg: #6366f1;
+  --button-hover-bg: #4f46e5;
+  --button-text: #ffffff;
+  --danger-bg: #ef4444;
+  --danger-hover-bg: #dc2626;
+  --border-color: #4b5563;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 2rem 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 1rem;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+h1, h2, h3 {
+    color: var(--text-color);
+}
+
+.card {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.card p.amount {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.chart-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.chart-container {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#projectForm {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+#projectForm input, #projectForm button {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.25rem;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: all 0.2s ease-in-out;
+}
+
+#projectForm button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#projectForm button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.actions select {
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.25rem;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.actions button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    font-weight: bold;
+}
+
+.actions button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    text-align: left;
+}
+
+th, td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    background-color: var(--border-color);
+    font-weight: bold;
+}
+
+tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+td button {
+    padding: 0.3rem 0.6rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    color: var(--button-text);
+    margin-right: 0.25rem;
+}
+
+td button:first-of-type {
+    background-color: var(--button-bg);
+}
+
+td button:first-of-type:hover {
+    background-color: var(--button-hover-bg);
+}
+
+td button:last-of-type {
+    background-color: var(--danger-bg);
+}
+
+td button:last-of-type:hover {
+    background-color: var(--danger-hover-bg);
+}
