@@ -42,12 +42,11 @@
         </section>
         
         <section id="project-form-section" class="card">
-            <h2>Add/Edit Project</h2>
+            <h2>Add New Project</h2>
             <form id="projectForm">
                 <input type="text" id="client" placeholder="Client Name" required>
                 <input type="text" id="project" placeholder="Project Name" required>
                 <input type="number" id="amount" placeholder="Total Amount" step="0.01" required>
-                <input type="number" id="paidAmount" placeholder="Paid Amount" step="0.01" required>
                 <input type="date" id="dueDate" required>
                 <button type="submit">Save Project</button>
             </form>
@@ -73,7 +72,7 @@
                     <tr>
                         <th>Client</th>
                         <th>Project</th>
-                        <th>Amount</th>
+                        <th>Total Amount</th>
                         <th>Paid</th>
                         <th>Remaining</th>
                         <th>Due Date</th>
@@ -84,6 +83,28 @@
                 <tbody id="projectTable"></tbody>
             </table>
         </section>
+    </div>
+
+    <div id="paymentModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2 id="modalTitle">Payments for Project:</h2>
+        <table id="paymentHistoryTable">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+        <form id="addPaymentForm" class="add-payment-form">
+          <input type="number" id="newPaymentAmount" placeholder="New Payment Amount" step="0.01" required>
+          <input type="date" id="newPaymentDate" required>
+          <button type="submit">Add Payment</button>
+        </form>
+      </div>
     </div>
 
     <script src="script.js"></script>
