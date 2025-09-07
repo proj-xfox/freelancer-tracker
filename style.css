@@ -195,6 +195,13 @@ td button:last-of-type:hover {
     background-color: var(--danger-hover-bg);
 }
 
+/* New CSS for Project List UI */
+td:nth-child(2) {
+  max-width: 200px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
 /* New CSS for Payment Modal */
 .modal {
   display: none;
