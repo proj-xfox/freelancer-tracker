@@ -194,3 +194,10 @@ td button:last-of-type {
 td button:last-of-type:hover {
     background-color: var(--danger-hover-bg);
 }
+
+/* New CSS to handle long project names */
+td:nth-child(2) {
+  max-width: 200px; /* Adjust this value to set the fixed width */
+  overflow-wrap: break-word; /* This is the modern replacement for word-wrap */
+  word-wrap: break-word; /* Fallback for older browsers */
+}
