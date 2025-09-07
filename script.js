@@ -105,23 +105,22 @@ function renderTable() {
 // Event listener for adding a new project
 projectForm.addEventListener('submit', e => {
     e.preventDefault();
-    const newProject = {
-        client: document.getElementById('client').value,
-        project: document.getElementById('project').value,
-        amount: parseFloat(document.getElementById('amount').value),
-        dueDate: document.getElementById('dueDate').value,
-        payments: []
-    };
     if (editingIndex >= 0) {
         // This is an edit action, update the existing project
-        projects[editingIndex] = {
-            ...projects[editingIndex], // keep existing payments
-            ...newProject,
-            payments: projects[editingIndex].payments
-        };
+        projects[editingIndex].client = document.getElementById('client').value;
+        projects[editingIndex].project = document.getElementById('project').value;
+        projects[editingIndex].amount = parseFloat(document.getElementById('amount').value);
+        projects[editingIndex].dueDate = document.getElementById('dueDate').value;
         document.getElementById('projectForm button').textContent = "Save Project";
         editingIndex = -1;
     } else {
+        const newProject = {
+            client: document.getElementById('client').value,
+            project: document.getElementById('project').value,
+            amount: parseFloat(document.getElementById('amount').value),
+            dueDate: document.getElementById('dueDate').value,
+            payments: []
+        };
         projects.push(newProject);
     }
     projectForm.reset();
